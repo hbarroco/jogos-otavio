@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Primeiro Jogo 2D - Aventura de Plataforma</title>
     <link rel="stylesheet" href="src/style.css">
 </head>
@@ -16,19 +16,17 @@
             </div>
         </div>
         
-        <div class="canvas-wrapper">
-            <canvas id="gameCanvas"></canvas>
+        <canvas id="gameCanvas"></canvas>
 
-            <div class="touch-controls">
-                <div class="touch-dpad">
-                    <button class="touch-btn" id="btn-left">&#9664;</button>
-                    <button class="touch-btn" id="btn-down">&#9660;</button>
-                    <button class="touch-btn" id="btn-right">&#9654;</button>
-                </div>
-                <div class="touch-actions">
-                    <button class="touch-btn" id="btn-dash">DASH</button>
-                    <button class="touch-btn touch-jump" id="btn-jump">PULAR</button>
-                </div>
+        <div class="touch-bar">
+            <div class="touch-dpad">
+                <button class="touch-btn" id="btn-left">&#9664;</button>
+                <button class="touch-btn" id="btn-down">&#9660;</button>
+                <button class="touch-btn" id="btn-right">&#9654;</button>
+            </div>
+            <div class="touch-actions">
+                <button class="touch-btn" id="btn-dash">DASH</button>
+                <button class="touch-btn touch-jump" id="btn-jump">PULAR</button>
             </div>
         </div>
 

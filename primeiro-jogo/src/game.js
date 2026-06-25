@@ -464,22 +464,25 @@ function restartGame() {
 
 // ── Touch controls ───────────────────────────────────────────────────────────
 (function setupTouch() {
+    // Prevent pull-to-refresh and pinch-zoom while playing
+    document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+
     const bindings = [
-        { id: 'btn-left',  keys: ['ArrowLeft', 'a'] },
-        { id: 'btn-right', keys: ['ArrowRight', 'd'] },
-        { id: 'btn-down',  keys: ['ArrowDown', 's'] },
-        { id: 'btn-jump',  keys: [' ', 'Space', 'ArrowUp', 'w'] },
-        { id: 'btn-dash',  keys: ['Shift'] },
+        { id: 'btn-left',  press: ['ArrowLeft',  'a'] },
+        { id: 'btn-right', press: ['ArrowRight', 'd'] },
+        { id: 'btn-down',  press: ['ArrowDown',  's'] },
+        { id: 'btn-jump',  press: [' ', 'Space', 'ArrowUp', 'w'] },
+        { id: 'btn-dash',  press: ['Shift'] },
     ];
 
-    bindings.forEach(({ id, keys: k }) => {
+    bindings.forEach(({ id, press: k }) => {
         const el = document.getElementById(id);
         if (!el) return;
-        const press   = () => k.forEach(key => { keys[key] = true; });
-        const release = () => k.forEach(key => { keys[key] = false; });
-        el.addEventListener('touchstart', e => { e.preventDefault(); press(); },   { passive: false });
-        el.addEventListener('touchend',   e => { e.preventDefault(); release(); }, { passive: false });
-        el.addEventListener('touchcancel',e => { e.preventDefault(); release(); }, { passive: false });
+        const on  = e => { e.preventDefault(); k.forEach(key => { keys[key] = true;  }); };
+        const off = e => { e.preventDefault(); k.forEach(key => { keys[key] = false; }); };
+        el.addEventListener('touchstart',  on,  { passive: false });
+        el.addEventListener('touchend',    off, { passive: false });
+        el.addEventListener('touchcancel', off, { passive: false });
     });
 })();
 

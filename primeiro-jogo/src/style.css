@@ -52,11 +52,6 @@ body {
     color: #667eea;
 }
 
-.canvas-wrapper {
-    position: relative;
-    width: 100%;
-}
-
 #gameCanvas {
     display: block;
     width: 100%;
@@ -66,45 +61,32 @@ body {
     background: linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 100%);
 }
 
-/* Touch controls — hidden on mouse devices, shown on touch screens */
-.touch-controls {
+/* Touch bar — always in DOM, hidden on desktop */
+.touch-bar {
     display: none;
-    position: absolute;
-    bottom: 12px;
-    left: 0;
-    right: 0;
-    pointer-events: none;
-    padding: 0 12px;
     justify-content: space-between;
-    align-items: flex-end;
-}
-
-@media (pointer: coarse) {
-    .touch-controls {
-        display: flex;
-    }
+    align-items: center;
+    padding: 10px 6px 4px;
 }
 
 .touch-dpad {
     display: flex;
-    gap: 6px;
-    pointer-events: all;
+    gap: 8px;
 }
 
 .touch-actions {
     display: flex;
-    gap: 8px;
-    pointer-events: all;
+    gap: 10px;
 }
 
 .touch-btn {
-    width: 58px;
-    height: 58px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    border: none;
-    background: rgba(102, 126, 234, 0.65);
+    border: 2px solid rgba(255,255,255,0.4);
+    background: rgba(102, 126, 234, 0.85);
     color: #fff;
-    font-size: 1.3em;
+    font-size: 1.4em;
     font-weight: bold;
     cursor: pointer;
     user-select: none;
@@ -113,12 +95,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.touch-btn:active {
+    background: rgba(118, 75, 162, 0.95);
+    transform: scale(0.93);
 }
 
 .touch-jump {
-    background: rgba(46, 204, 113, 0.7);
-    font-size: 0.8em;
+    background: rgba(46, 204, 113, 0.85);
+    font-size: 0.75em;
+    letter-spacing: 0.03em;
 }
 
 .controls-info {
@@ -207,24 +196,37 @@ kbd {
 
 @media (max-width: 768px) {
     .game-container {
-        padding: 15px;
-    }
-    
-    .game-header h1 {
-        font-size: 1.5em;
-    }
-    
-    #gameCanvas {
-        height: 350px;
+        padding: 10px;
+        border-radius: 12px;
     }
 
-    .touch-btn {
-        width: 52px;
-        height: 52px;
-        font-size: 1.1em;
+    .game-header {
+        margin-bottom: 10px;
     }
-    
-    .controls-grid {
-        grid-template-columns: 1fr;
+
+    .game-header h1 {
+        font-size: 1.2em;
+        margin-bottom: 8px;
+    }
+
+    .game-info {
+        gap: 12px;
+        font-size: 1em;
+    }
+
+    .score, .lives {
+        padding: 6px 14px;
+    }
+
+    #gameCanvas {
+        height: 300px;
+    }
+
+    .touch-bar {
+        display: flex;
+    }
+
+    .controls-info {
+        display: none;
     }
 }
