@@ -1,6 +1,9 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+const enemyImg = new Image();
+enemyImg.src = 'assets/angry-face.png';
+
 function resizeCanvas() {
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
@@ -200,10 +203,18 @@ function updatePlayer() {
 }
 
 // ── Enemies ──────────────────────────────────────────────────────────────────
+const ENEMY_DETECTION = 320;
+
 function updateEnemies() {
     world.enemies.forEach(e => {
-        e.x += e.speed * e.dir;
-        if (e.x > e.startX + e.rangeX || e.x < e.startX - e.rangeX) e.dir *= -1;
+        const dist = Math.abs(player.x - e.x);
+        if (dist < ENEMY_DETECTION) {
+            e.dir = player.x > e.x ? 1 : -1;
+            e.x += e.speed * e.dir * 1.5;
+        } else {
+            e.x += e.speed * e.dir;
+            if (e.x > e.startX + e.rangeX || e.x < e.startX - e.rangeX) e.dir *= -1;
+        }
 
         if (checkCollision(player, e) && !player.invulnerable) {
             // Jump on top → stomp (kill enemy)
@@ -282,16 +293,15 @@ function drawEnemies() {
     world.enemies.forEach(e => {
         const sx = wx(e.x);
         if (sx + e.width < 0 || sx > canvas.width) return;
-        // Body
-        ctx.fillStyle = '#774307';
-        ctx.fillRect(sx, e.y, e.width, e.height);
-        // Eyes
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(sx + 6,  e.y + 8, 8, 8);
-        ctx.fillRect(sx + 22, e.y + 8, 8, 8);
-        ctx.fillStyle = '#000';
-        ctx.fillRect(sx + (e.dir > 0 ? 10 : 8),  e.y + 11, 4, 4);
-        ctx.fillRect(sx + (e.dir > 0 ? 26 : 24), e.y + 11, 4, 4);
+
+        ctx.save();
+        if (e.dir < 0) {
+            ctx.scale(-1, 1);
+            ctx.drawImage(enemyImg, -sx - e.width, e.y, e.width, e.height);
+        } else {
+            ctx.drawImage(enemyImg, sx, e.y, e.width, e.height);
+        }
+        ctx.restore();
     });
 }
 
