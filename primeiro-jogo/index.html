@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeiro Jogo 2D - Aventura de Plataforma</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🎮 Aventura de Plataforma</h1>
+            <div class="game-info">
+                <div class="score">Pontos: <span id="score">0</span></div>
+                <div class="lives">Vidas: <span id="lives">3</span></div>
+            </div>
+        </div>
+        
+        <canvas id="gameCanvas"></canvas>
+        
+        <div class="controls-info">
+            <h3>Controles:</h3>
+            <div class="controls-grid">
+                <div class="control-item">
+                    <kbd>←</kbd> <kbd>→</kbd> Mover
+                </div>
+                <div class="control-item">
+                    <kbd>ESPAÇO</kbd> Pular
+                </div>
+                <div class="control-item">
+                    <kbd>SHIFT</kbd> Dash
+                </div>
+                <div class="control-item">
+                    <kbd>↓</kbd> Agachar
+                </div>
+                <div class="control-item">
+                    <kbd>R</kbd> Reiniciar
+                </div>
+            </div>
+        </div>
+        
+        <div id="gameOver" class="game-over hidden">
+            <h2>Game Over!</h2>
+            <p>Pontuação Final: <span id="finalScore">0</span></p>
+            <button onclick="restartGame()">Jogar Novamente</button>
+        </div>
+
+        <div id="gameWin" class="game-over hidden">
+            <h2 style="color: #2ecc71;">Você Venceu!</h2>
+            <p>Pontuação Final: <span id="winScore">0</span></p>
+            <button onclick="restartGame()">Jogar Novamente</button>
+        </div>
+    </div>
+    
+    <script src="src/game.js"></script>
+</body>
+</html>
