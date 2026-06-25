@@ -9,7 +9,7 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 // ── World ────────────────────────────────────────────────────────────────────
-const WORLD_WIDTH = 6000;
+const WORLD_WIDTH = 12000;
 const GROUND_Y = () => canvas.height - 50;
 
 // Camera offset (world → screen: screenX = worldX - cameraX)
@@ -36,7 +36,7 @@ function buildWorld() {
     // Elevated platforms scattered across the world
     const elevatedCount = 30;
     for (let i = 0; i < elevatedCount; i++) {
-        const px = 300 + (i / elevatedCount) * (WORLD_WIDTH - 800);
+        const px = 300 + (i / elevatedCount) * (WORLD_WIDTH - 600);
         const py = gh - 80 - Math.random() * 160;
         const pw = 100 + Math.random() * 120;
         platforms.push({ x: px, y: py, width: pw, height: 15, ground: false });
@@ -283,7 +283,7 @@ function drawEnemies() {
         const sx = wx(e.x);
         if (sx + e.width < 0 || sx > canvas.width) return;
         // Body
-        ctx.fillStyle = '#e74c3c';
+        ctx.fillStyle = '#774307';
         ctx.fillRect(sx, e.y, e.width, e.height);
         // Eyes
         ctx.fillStyle = '#fff';
