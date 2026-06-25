@@ -9,15 +9,29 @@
 <body>
     <div class="game-container">
         <div class="game-header">
-            <h1>🎮 Aventura de Plataforma</h1>
+            <h1>🎮 Aventuras do Otávio - Nível 1</h1>
             <div class="game-info">
                 <div class="score">Pontos: <span id="score">0</span></div>
                 <div class="lives">Vidas: <span id="lives">3</span></div>
             </div>
         </div>
         
-        <canvas id="gameCanvas"></canvas>
-        
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas"></canvas>
+
+            <div class="touch-controls">
+                <div class="touch-dpad">
+                    <button class="touch-btn" id="btn-left">&#9664;</button>
+                    <button class="touch-btn" id="btn-down">&#9660;</button>
+                    <button class="touch-btn" id="btn-right">&#9654;</button>
+                </div>
+                <div class="touch-actions">
+                    <button class="touch-btn" id="btn-dash">DASH</button>
+                    <button class="touch-btn touch-jump" id="btn-jump">PULAR</button>
+                </div>
+            </div>
+        </div>
+
         <div class="controls-info">
             <h3>Controles:</h3>
             <div class="controls-grid">

@@ -462,6 +462,27 @@ function restartGame() {
     gameLoop();
 }
 
+// ── Touch controls ───────────────────────────────────────────────────────────
+(function setupTouch() {
+    const bindings = [
+        { id: 'btn-left',  keys: ['ArrowLeft', 'a'] },
+        { id: 'btn-right', keys: ['ArrowRight', 'd'] },
+        { id: 'btn-down',  keys: ['ArrowDown', 's'] },
+        { id: 'btn-jump',  keys: [' ', 'Space', 'ArrowUp', 'w'] },
+        { id: 'btn-dash',  keys: ['Shift'] },
+    ];
+
+    bindings.forEach(({ id, keys: k }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const press   = () => k.forEach(key => { keys[key] = true; });
+        const release = () => k.forEach(key => { keys[key] = false; });
+        el.addEventListener('touchstart', e => { e.preventDefault(); press(); },   { passive: false });
+        el.addEventListener('touchend',   e => { e.preventDefault(); release(); }, { passive: false });
+        el.addEventListener('touchcancel',e => { e.preventDefault(); release(); }, { passive: false });
+    });
+})();
+
 // ── Main loop ────────────────────────────────────────────────────────────────
 function gameLoop() {
     if (!gameRunning) return;

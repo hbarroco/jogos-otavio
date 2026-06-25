@@ -52,6 +52,11 @@ body {
     color: #667eea;
 }
 
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+}
+
 #gameCanvas {
     display: block;
     width: 100%;
@@ -59,6 +64,61 @@ body {
     border: 3px solid #667eea;
     border-radius: 10px;
     background: linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 100%);
+}
+
+/* Touch controls — hidden on mouse devices, shown on touch screens */
+.touch-controls {
+    display: none;
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    padding: 0 12px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+@media (pointer: coarse) {
+    .touch-controls {
+        display: flex;
+    }
+}
+
+.touch-dpad {
+    display: flex;
+    gap: 6px;
+    pointer-events: all;
+}
+
+.touch-actions {
+    display: flex;
+    gap: 8px;
+    pointer-events: all;
+}
+
+.touch-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(102, 126, 234, 0.65);
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.touch-jump {
+    background: rgba(46, 204, 113, 0.7);
+    font-size: 0.8em;
 }
 
 .controls-info {
@@ -155,7 +215,13 @@ kbd {
     }
     
     #gameCanvas {
-        height: 400px;
+        height: 350px;
+    }
+
+    .touch-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 1.1em;
     }
     
     .controls-grid {
